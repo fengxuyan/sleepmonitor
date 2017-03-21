@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ChuangDian</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+	var info = JSON.parse(userInfo[2]);
+	var first = info.firstName;
+	var middle = info.middleName;
+	var last = info.lastName;
+	var name;
+	if(middle==null||middle==""){
+		name = first+" "+last;
+	}else{
+		name = first+" "+middle+" "+last;
+	}
+	
+	var image = info.image;
+	
+	document.getElementById("head").src=""+image;
+	$("#user_name").text(name);
+});
+</script>
+</head>
+<body>
+	<div class="holder">
+		<div class="header">
+			<div class="header_scroll">
+				<h2>isleep</h2>
+			</div>
+			<div class="header_text">
+				<div class="header_text_left">
+					<span class="glyphicon glyphicon-home"></span>
+				</div>
+				<div class="header_text_right">
+					<span class="header_pic"><a href="modify.html" ><img src="Heads/head_test.jpg" id="head"></a></span>
+					<a href="modify.html"><span>个人资料</span></a><a href=""><span>退出登录</span></a>
+				</div>
+			</div>
+		</div>
+	<div class="content_icon">
+		<ul class="content_icon_list">
+			<li><a href="real.html"><span>实时数据</span></a></li>
+			<li><a href="healthy.html"><span>健康档案</span></a></li>
+			<li><a href="addProduct.html"><span>添加更换设备</span></a></li>
+			<li><a href="deleteProduct.html"><span>删除设备</span></a></li>
+		</ul>
+	</div>
+	</div>
+</body>
+</html>

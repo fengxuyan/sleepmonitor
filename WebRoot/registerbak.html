@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Register Account</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="/SleepMonitor/JS/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/register.css">
+<script src="/SleepMonitor/JS/DateFormat.js"></script>
+<script src="/SleepMonitor/JS/checkForm.js" type="text/javascript"></script>
+<script type="text/javascript">
+		checkForm();
+</script>
+<script type="text/javascript">
+function userBrowser(){
+    	var browserName=window.navigator.userAgent.toLowerCase();
+    	if(browserName.indexOf('gecko') > -1 && browserName.indexOf('firefox') > -1)
+        	document.getElementById("register_form").style.height = "480px";
+	}
+window.onload = userBrowser;
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#yearOfBirth").datepicker();
+    });
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit_submit").click(function(){
+				var flog = checkForm();
+				if(flog!=false){
+				var str = document.getElementById("yearOfBirth").value;
+				/* var val = str.split("/");
+				if(val[0].length==1)
+					val[0]=0+val[0];
+				if(val[1].length==1)
+					val[1]=0+val[1];
+				var date = new Date(val[2],val[1],val[0]);
+				var birthday = date.Format("MM/dd/yyyy"); */
+				$.ajax({
+				type:"POST",
+				url:"/SleepMonitor/login/register",
+				data:{
+					firstName:document.getElementById("firstName").value,
+					middleName:document.getElementById("middleName").value,
+					lastName:document.getElementById("lastName").value,
+					yearOfBirth:document.getElementById("yearOfBirth").value,
+					gender:document.getElementById("gender").value,
+					phoneNumber:document.getElementById("phone").value,
+					address:document.getElementById("address").value,
+					email:document.getElementById("email").value,
+					password:document.getElementById("password").value,
+					},
+				dataType:"json",
+				timeout:5000,
+				success:function(data){
+						if(data.Code!=1){
+							alert(data.Message);
+						}else{
+							alert(data.Message);
+							document.cookie="register_Email="+document.getElementById("email").value;
+							document.cookie="register_password="+document.getElementById("password").value;
+						 	window.location.href="/SleepMonitor/login.html";
+						}
+					},
+				error:function(){
+					alert("Unkonw Error.Please Try Again!");
+					}
+				});
+				}
+		});
+	});
+</script>
+</head>
+<body class="register_page" >
+	<div class="register_form" style="height:450px" id="register_form">
+		<form name="re_form" onsubmit="return checkForm()">
+			<h3 class="register_title">REGISTER</h3>
+			<h6 class="register_notice">Attention:The message with * must be filled out!</h6>
+			<table width="340" class="register_table">
+				<tr>
+					<td class="register_message">First Name: *</td>
+					<td><input type="text" placeholder="First Name" name="firstName" id="firstName" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message">Middle Name:</td>
+					<td><input type="text" placeholder="Middle Name" name="middleName" id="middleName" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message">Last Name: *</td>
+					<td><input type="text" placeholder="Last Name" name="lastName" id="lastName" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message" >Year Of Birth: *</td>
+					<td><input type="text" class="regiseter_input" name="yearOfBirth" id="yearOfBirth" value="01/01/1975"></td>
+				</tr>
+				<tr>
+					<td class="register_gender">Gender: *</td>
+					<td class="gender_input" id="Gender" ><select class="gender_style" id="gender" name ="gender">
+							<option value ="0"></option>
+							<option value="Male" >Male</option>
+							<option value="Female" >Female</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="register_message">Phone Number: *</td>
+					<td><input type="text" placeholder="Phone Number" name="phone" id="phone" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message">Address:</td>
+					<td><input type="text" placeholder="Address" name="address" id="address" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message">Email: *</td>
+					<td><input type="text" placeholder="Email" name="Email" id="email" class="regiseter_input" ></td>
+				</tr>
+				<tr>
+					<td class="register_message">Password: *</td>
+					<td><input type="password" placeholder="Password" name="password" id="password" class="regiseter_input"></td>
+				</tr>
+				<tr>
+					<td class="register_message">Confirm Password:*</td>
+					<td><input type="password" placeholder="Re-type Your Password" name="repassword" class="regiseter_input"></td>
+				</tr>
+			</table>
+			<label class="checkService">
+				<input type="checkbox" id="checkService">I agree to the <a href="UserService.jsp" target="_blank">Terms of Service</a>
+			</label><br/>
+			<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" class="submit_back">
+			<input type="button" value="Submit" id="submit_submit" class="submit_submit">
+		</form>
+	</div>
+</body>
+</html>

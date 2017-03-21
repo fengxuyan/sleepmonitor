@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Real Data</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/real.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
+</script>
+</head>
+<body id="real">
+	<div id="real_info">
+		<h3 id="real_title">Real-time Data</h3>
+		<div id="xl"><h4>心率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4><h4>/min</h4></div>
+		<div id="hxl"><h4>呼吸率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4><h4>/min</h4></div>
+		<div id="zt">
+			<h4>状态:&nbsp;&nbsp;</h4>
+			<div><input type="checkbox" name="ztai" value="ztai" />在床</div>
+			<div><input type="checkbox" name="ztai" value="ztai" />体动</div>
+			<div><input type="checkbox" name="ztai" value="ztai" />无人</div>
+		</div>
+		<div id="sj"><h4>时间:</h4></div>
+		<button type="button" onclick="javascript:location.reload()" style="padding:10px;" >Refresh</button>
+	</div>
+</body>
+</html>

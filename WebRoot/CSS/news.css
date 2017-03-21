@@ -1,0 +1,70 @@
+/***
+news page 通用样式
+***/
+
+.news_page{
+	width:100%;
+	height:100%;
+	background-color:#eceef1 !important;
+	font-family:Arial;
+}
+.news_page .news_top{
+	width:100%;
+	height:150px;
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	background-color:#50545a;
+}
+.news_page .news_top .logo{
+	float:left;
+	padding-top:40px;
+	padding-left:100px;
+	color:#ffffff;
+	display:inline;
+}
+.news_page .news_top .company{
+	float:right;
+	padding-top:60px;
+	padding-right:25px;
+}
+.news_page .news_left{
+	width:200px;
+	height:320px;
+	border:1px solid #008ED1;
+	border-radius:5px;
+	float:left;
+	margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 80px;
+}
+/* .news_page .news_left .title{
+	
+} */
+.news_page .news_left .division{
+	margin-top: -20px;
+    margin-left: 10px;
+    margin-bottom: -15px;
+}
+.news_page .news_left .news_title{
+	text-decoration:none;
+	word-break:break-all;
+	margin-left:10px;
+	margin-right:10px;
+	color:#008ed1;
+}
+
+.news_page .news_right{
+	width:700px;
+	height:500px;
+	margin-top:20px;
+	float:left;
+}
+.news_page .news_right .news_introduction{
+	font-size:1.3em;
+}
+/* .news_page .news_foot{
+	width:100%;
+	height:20px;
+	background-color:#BFD9FF;
+} */

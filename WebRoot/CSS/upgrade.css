@@ -1,0 +1,19 @@
+/***
+Upgrade Page
+***/
+
+#upgrade{
+		width:100%; 
+		height:100%; 
+		margin:0 auto; 
+		background-color:#364150 !important;
+		font-family:Arial;
+		padding:30px;
+}
+#upgrade #info{
+		width:400px;
+		height:500px;
+		background-color:#eceef1;
+		padding:30px;
+		margin:auto;
+}

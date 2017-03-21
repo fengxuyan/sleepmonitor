@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+/**
+*Add Product
+**/
+
+#add{
+	width:100%; 
+	height:100%; 
+	margin:0 auto; 
+	background-color:#364150 !important;
+	font-family:Arial;
+}
+#add #info{
+	width:350px; 
+	height:160px; 
+	text-align:center;
+	margin:0 auto; 
+	background-color:#eceef1;
+	padding:30px;
+	margin-top:90px;
+}
+#add #info #SN{
+	float:left;
+	width:300px;
+	padding:12px;
+	background-color:#dde3ec;
+	border:1px solid #dde3ec;
+}
+#add #info #back{
+	float:left;
+	width:60px;
+	padding:12px;
+	margin-top:15px;
+	background-color:#fafaff;
+	border-color:#fafaff;
+	border:0px;
+}
+#add #info #add_product{
+	float:right;
+	width:60px;
+	padding:12px;
+	margin-right:25px;
+	margin-top:15px;
+	background-color:#45b6af;
+	border-color:#45b6af;
+	border:0px;
+}

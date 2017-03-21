@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Login</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<script type="text/javascript">
+		function refresh(obj){
+			document.getElementById("img").src = "/SleepMonitor/Verification.jsp?date=" + new Date();//����һ�������,��ֹ�ظ�  
+		}
+		function checkLogin(){
+			var x1 = document.forms["login"]["Email"].value;
+			var x2 = document.forms["login"]["password"].value;
+			var x3 = document.forms["login"]["verification"].value;
+			if(x1==null||x1==""||x2==null||x2==""){
+				alert("Email or Password should not Be Empty!");
+				return false;
+			}
+		}
+	</script>
+	  <link rel="stylesheet" type="text/css" href="css/global.css">
+	  <link rel="stylesheet" type="text/css" href="css/layout.css">
+	  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".login_submit").click(function(){
+			var x1 = document.forms["login"]["Email"].value;
+			var x2 = document.forms["login"]["password"].value;
+			var x3 = document.forms["login"]["verification"].value;
+			if(x1==null||x1==""||x2==null||x2==""){
+				alert("Email or Password should not Be Empty!");
+			}else if(x3==null||x3==""){
+				alert("Verification should not Be Empty!");
+			}else{
+				$.ajax({
+				type:"POST",
+				url:"/SleepMonitor/login/login",
+				data:{
+					Email:document.getElementById("Email").value,
+					password:document.getElementById("password").value,
+					yzm:document.getElementById("verification").value,
+					},
+				dataType:"json",
+				success:function(data){
+						if(data.Code!=1){
+							document.getElementById("img").src = "/SleepMonitor/Verification.jsp?date=" + new Date();
+							alert(data.Message);
+						}else{
+							document.cookie="userData="+JSON.stringify(data.data);
+							document.cookie="dluEmail="+document.getElementById("Email").value;
+							document.cookie="dlumima="+document.getElementById("password").value;
+							window.location.href="homepage.html";
+						}
+					},
+				error:function(){
+					alert("Unkonw Error.Please Try Again!");
+					}
+				});
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var myEmail = document.cookie.match(new RegExp("(^| )register_Email=([^;]*)(;|$)"));
+	var myPassword = document.cookie.match(new RegExp("(^| )register_password=([^;]*)(;|$)"));
+	document.getElementById("Email").value=myEmail[2];
+	document.getElementById("password").value=myPassword[2];
+});
+</script>
+</head>
+<body>
+
+  <div class="login">
+	  <div class="login_panel">
+		<div class="panel_text">
+			<h2>Sign In</h2>
+		</div>
+		<div class="panel_input email">
+			<input type="text" placeholder="Email" id="Email" value="" />
+		</div>
+		  <div class="panel_input pwd">
+			  <input type="password" placeholder="Password" id="password" />
+		  </div>
+		  <div class="panel_input_text">
+			  <input class="login_submit" type="submit" value="Log In" /><a href="forget.html"><span>Forget Password</span></a>
+		  </div>
+		 <div class="panel_foot">
+			 <div class="form_register">
+				 <a href="register.html" class="register_front" id="register_page">REGISTER AN ACCOUNT</a>
+			 </div>
+		 </div>
+	  </div>
+  </div>
+  </body>
+</html>

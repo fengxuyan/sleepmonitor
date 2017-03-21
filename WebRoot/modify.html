@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Modify Information</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="/SleepMonitor/JS/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<script src="/SleepMonitor/JS/DateFormat.js"></script>
+	<script src="/SleepMonitor/JS/ajaxfileupload.js"></script>
+	<script src="/SleepMonitor/JS/checkbrowser.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#yearOfBirth").datepicker();
+			var browser = checkbrowser();
+			if("FF"==browser)
+				document.getElementById("notice").style="width:330px";
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#submit_submit").click(function(){
+				var flog = checkForm();
+				if(flog!=false){
+					$.ajaxFileUpload({
+						url: "/SleepMonitor/login/modify",
+						type: "POST",
+						data : {
+							firstName:document.getElementById("firstName").value,
+							middleName:document.getElementById("middleName").value,
+							lastName:document.getElementById("lastName").value,
+							yearOfBirth:document.getElementById("yearOfBirth").value,
+							gender:document.getElementById("gender").value,
+							phoneNumber:document.getElementById("phone").value,
+							address:document.getElementById("address").value,
+							email:document.getElementById("email").value,
+							password:document.getElementById("password").value,
+						},
+						secureuri: false, //一般设置为false
+						fileElementId: "head", // 上传文件的id、name属性名
+						dataType: "json",
+						success: function(data){
+							if(data.Code==1006){
+								re_request();
+							}else{
+								alert(data.Message);
+							}
+						},
+						error: function(){
+							alert("Unknow Error.Please Try Again");
+						}
+					});
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		function re_request(){
+			$.ajax({
+				type:"POST",
+				url:"/SleepMonitor/login/login",
+				data:{
+					Email:document.getElementById("email").value,
+					password:document.getElementById("password").value,
+				},
+				dataType:"json",
+				success:function(data){
+					if(data.Code!=1){
+						alert(data.Message);
+					}else{
+						document.cookie="userData="+JSON.stringify(data.data);
+						alert("Successfully Modify!");
+						window.location.href="homepage.html";
+					}
+				},
+				error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		function checkForm(){
+			var x1 = document.forms["re_form"]["firstName"].value;
+			var x2 = document.forms["re_form"]["lastName"].value;
+			var x3 = document.forms["re_form"]["yearOfBirth"].value;
+			var select = document.getElementById("gender");
+			if(select[0].selected==true){
+				alert("The Gender is not Filled");
+				return false;
+			}
+			var x5 = document.forms["re_form"]["phone"].value;
+			var x6 = document.forms["re_form"]["Email"].value;
+			var x7 = document.forms["re_form"]["password"].value;
+			if(x1==null||x1==""||x2==null||x2==""||x3==null||x3==""){
+				alert("Some Option is not Filled");
+				return false;
+			}
+			if(x5==null||x5==""||x6==null||x6==""||x7==null||x7==""){
+				alert("Some Option is not Filled");
+				return false;
+			}
+
+			var x9 = document.forms["re_form"]["repassword"].value;
+			if(x7!=x9){
+				alert("Please Check Your Password!Keep the Same");
+				return false;
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		function userBrowser(){
+			var browserName=window.navigator.userAgent.toLowerCase();
+			if(browserName.indexOf('gecko') > -1 && browserName.indexOf('firefox') > -1)
+				document.getElementById("register_form").style.height = "500px";
+		}
+		window.onload = userBrowser;
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+			var info = JSON.parse(userInfo[2]);
+			document.getElementById("firstName").value = info.firstName;
+			document.getElementById("middleName").value = info.middleName;
+			document.getElementById("lastName").value = info.lastName;
+
+			var year = info.yearOfBirth;
+			if(year!==null&&!(year=="")&&!(year==undefined))
+				document.getElementById("yearOfBirth").value = year;
+
+			var gender = info.gender;
+			$("#gender").val(gender);
+			document.getElementById("phone").value = info.phoneNumber;
+			var address = info.address;
+			if(address!==null&&!(address=="")&&!(address==undefined))
+				document.getElementById("address").value = address;
+			document.getElementById("email").value = info.Email;
+			document.getElementById("email").readOnly="readOnly";
+			document.getElementById("password").value = info.password;
+			document.getElementById("re_password").value = info.password;
+		});
+	</script>
+</head>
+
+<body>
+
+<div class="holder reg_container">
+	<div class="left_nav reg_nav" >
+		<div class="header_text">
+			<div class="header_text_right">
+				<span class="header_pic"><a href="modify.html" ><img src="Heads/head_test.jpg" id="head"></a></span>
+			</div>
+		</div>
+		<ul>
+			<a href="javascript:scroll(0,0)"><li>First Name</li></a>
+			<a href="#middleName"><li>Middle Name</li></a>
+			<a href="#lastName"><li>Last Name</li></a>
+			<a href="#birthday_container"><li>Birthday</li></a>
+			<a href="#gender"><li>Gender</li></a>
+
+
+			<a href="#phone"><li>Phone Number</li></a>
+			<a href="#address"><li>Address</li></a>
+			<a href="#email"><li>E-mail</li></a>
+			<a href="#password"><li>Password</li></a>
+
+			<a href="#repassword"><li>Confirm Password</li></a>
+
+		</ul>
+	</div>
+	<div class="right_show">
+		<h3>Modify</h3>
+		<span onclick="javascript:history.back(-1);" class="glyphicon icon-caret-right"></span>
+		<div class="show_detail register">
+			<form name="re_form" onsubmit="return checkForm()">
+				<div class="form_txt">
+
+				</div>
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="First Name *" id="firstName" value="" />
+				</div>
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="Middle Name" id="middleName" value="" />
+				</div>
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="Last Name *" id="lastName" value="" />
+				</div>
+				<span class="bir_txt">Birthday *</span>
+				<div class="reg_input reg_select ymd mod_input mod_ymd"  id="birthday_container">
+
+					<select name="year"></select>
+					<select name="month"></select>
+					<select name="day"></select>
+					<!--<input type="text" placeholder="Birthday *" id="yearOfBirth" value="01/01/1975" />-->
+				</div>
+				<div class="reg_input reg_select sex mod_input mod_sex">
+					<select  id="gender" name ="gender">
+						<option value ="" selected>Gender *</option>
+						<option value="Male" >Male</option>
+						<option value="Female" >Female</option>
+					</select>
+				</div>
+
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="Phone Number *" id="phone" value="" />
+				</div>
+
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="Address" id="address" value="" />
+				</div>
+
+				<div class="panel_input reg_input mod_input">
+					<input type="text" placeholder="E-mail *" id="email" value="" />
+				</div>
+
+				<div class="panel_input reg_input mod_input">
+					<input type="password" placeholder="Password *" id="password" value="" />
+				</div>
+
+				<div class="panel_input reg_input mod_input">
+					<input type="password" placeholder="Confirm Password" id="repassword" value="" />
+				</div>
+				<div class="foot_btn">
+					<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" class="submit_back">
+					<input type="button" value="Submit" id="submit_submit" class="submit_submit">
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<script src="js/mine.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="JS/birthday.js"></script>
+	<script>
+		$("#birthday_container").birthday();
+	</script>
+</div>
+</body>
+</html>

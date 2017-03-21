@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>HomePage</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+            var info = JSON.parse(userInfo[2]);
+            var first = info.firstName;
+            var middle = info.middleName;
+            var last = info.lastName;
+            var name;
+            if(middle==null||middle==""){
+                name = first+" "+last;
+            }else{
+                name = first+" "+middle+" "+last;
+            }
+
+            var image = info.image;
+
+            var type1 = info.type1sn;
+            var type2 = info.type2sn;
+            var type3 = info.type3sn;
+
+            //添加头像
+            document.getElementById("head").src=""+image;
+            //添加名字
+            $("#user_name").text(name);
+            //确定是否有产品页面
+            /* if((type1==null||type1=="")&&(type2==null||type2=="")&&(type3==null||type3=="")){
+             document.getElementById("product").style="display:none";
+             document.getElementById("info").style.height="220px";
+             } */
+
+        });
+    </script>
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        #home{
+            width:100%;
+            height:100%;
+            background-color:#364150 !important;
+            font-family:Arial;
+            text-align: center;
+        }
+        #home #info {
+            width:650px;
+            height:370px;
+            padding:30px;
+            background-color:#dae3f1;
+            border:1px solid #dde3ec;
+            margin: 0px auto;
+            margin-top:100px;
+        }
+        #home #head_pic{
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0px auto;
+        }
+        #home #head_pic #head{
+            width:100%;
+            height:100%;
+        }
+        #home #info #user_name{
+            margin-bottom: 50px;
+        }
+
+        #home #info #product_info{
+            padding:36px;
+            border:1px solid #15243c;
+            border-radius: 50%;
+            display:inline;
+        }
+        #home #info #info_select{
+            padding:26px;
+            border:1px solid #15243c;
+            border-radius: 50%;
+            display:inline;
+        }
+        #home #info #info_select_product{
+            padding:26px;
+            border:1px solid #15243c;
+            border-radius: 50%;
+            display:inline;
+        }
+    </style>
+</head>
+<body id="home">
+<div id="info">
+    <div id="head_pic"><a href="modify.html" style="text-decoration: none;"><img src="" id="head"></a></div>
+    <h3 id="user_name"></h3>
+    <div class="product" id="product">
+        <a href="chuangdian.html" id="cd" style="text-decoration: none;"><span id="product_info">智能床垫</span></a>
+        <a href="" id="zt" style="text-decoration: none;" title="Yet open, please wait patiently"><span id="product_info">智能枕</span></a>
+        <a href="" id="sh" style="text-decoration: none;" title="Yet open, please wait patiently"><span id="product_info">智能手环</span></a>
+    </div>
+    <div style="margin-top:75px">
+        <a href="concern.html" style="text-decoration: none;"><span id="info_select">亲情关注</span></a>
+        <a href="productupgrade.html" style="text-decoration: none;"><span id="info_select_product">产品升级</span></a>
+        <a href="" style="text-decoration: none;"><span id="info_select" title="Yet open, please wait patiently">名医坐堂</span></a>
+        <a href="modify.html" style="text-decoration: none;"><span id="info_select">信息修改</span></a>
+    </div>
+</div>
+</body>
+</html>

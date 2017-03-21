@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Add Product</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script src="/SleepMonitor/JS/rerequest.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#add_product").click(function(){
+		var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var Email = info.Email;
+		$.ajax({
+		type:"post",
+		url:"/SleepMonitor/product/add",
+		data:{
+			SN:document.getElementById("SN").value,
+			Email:Email
+		},
+		dataType:"json",
+		success:function(data){
+					if(data.Code==1024){
+						rerequest();
+						alert(data.Message);
+						window.location.href="homepage.html";
+					}else{
+						alert(data.Message);
+					}
+				},
+		error:function(){
+					alert("Unkonw Error.Please Try Again!");
+					}
+		});
+	});
+});
+</script>
+<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/addProduct.css">
+</head>
+<body id="add">
+	<div id="info">
+	<h3 style="margin-top: -10px;">Add Product</h3>
+	<h4 style="float:left;margin-top: -10px;">Please Input Your SN:</h4>
+	<input type="text" id="SN" placeholder="SN">
+	<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" id="back">
+	<input type="button" value="Submit" id="add_product">
+	</div>
+</body>
+</html>

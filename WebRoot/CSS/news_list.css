@@ -1,0 +1,11 @@
+/***
+News List Page
+***/
+.news_list .news_title{
+	background-color:#008ED1;
+	border:1px solid #008ED1;
+	text-align:center;
+	margin-bottom: -10px;
+    margin-top: 0px;
+    font-size: 1.3em;
+}

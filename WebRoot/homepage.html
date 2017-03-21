@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HomePage</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<link rel="stylesheet" type="text/css" href="css/layout.css">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+	var info = JSON.parse(userInfo[2]);
+	var first = info.firstName;
+	var middle = info.middleName;
+	var last = info.lastName;
+	var name;
+	if(middle==null||middle==""){
+		name = first+" "+last;
+	}else{
+		name = first+" "+middle+" "+last;
+	}
+	
+	var image = info.image;
+	
+	var type1 = info.type1sn;
+	var type2 = info.type2sn;
+	var type3 = info.type3sn;
+	
+	//添加头像
+	document.getElementById("head").src=""+image;
+	//添加名字
+	$("#user_name").text(name);
+	//确定是否有产品页面
+	/* if((type1==null||type1=="")&&(type2==null||type2=="")&&(type3==null||type3=="")){
+		document.getElementById("product").style="display:none";
+		document.getElementById("info").style.height="220px";
+	} */
+		
+});
+</script>
+</head>
+<body>
+<div class="holder">
+	<div class="header">
+		<div class="header_scroll">
+			<h2>isleep</h2>
+		</div>
+		<div class="header_text">
+			<div class="header_text_right">
+				<span class="header_pic"><a href="modify.html" ><img src="Heads/head_test.jpg" id="head"></a></span>
+				<a href="modify.html"><span>个人资料</span></a><a href=""><span>退出登录</span></a>
+			</div>
+		</div>
+	</div>
+	<div class="content_icon">
+		<ul class="content_icon_list">
+			<li><a href="chuangdian.html"><span>智能床垫</span></a></li>
+			<li><a href="" title="Yet open, please wait patiently"><span>智能枕</span></a></li>
+			<li><a href="" title="Yet open, please wait patiently"><span>智能手环</span></a></li>
+			<li><a href="concern.html" ><span>亲情关注</span></a></li>
+			<li><a href="productupgrade.html" ><span>增值服务</span></a></li>
+			<li><a href="" ><span title="Yet open, please wait patiently">名医坐堂</span></a></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

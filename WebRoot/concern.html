@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Concern</title>
+    <!-- <script src="../js/jquery-1.11.2.min.js"></script> -->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="JS/mine.js"></script>
+    <script src="/SleepMonitor/JS/checkbrowser.js"></script>
+	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    			var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+				var info = JSON.parse(userInfo[2]);
+				var Email = info.Email;
+				var myConcern;
+				var concernMe;
+				var applyConcern;
+				search_gb();//调节申请部分的div
+				refresh_gb();//添加刷新按钮位置
+				concernMe_gb();//关注我的部分的位置
+				$.ajax({
+				type:"POST",
+				url:"/SleepMonitor/concern/getConcern",
+				data:{
+					Email:Email
+					},
+				dataType:"json",
+				timeout:5000,
+				success:function(data){
+						myConcern = data.data.myConcern;
+						concernMe = data.data.concernMe;
+						applyConcern = data.data.applyConcern;
+						$.each(applyConcern,function(index,content){
+							$("#no_info").remove();
+							$(".wait_approval").append("<div id='wait_wait'><h4 id='wait_name'>Name:&nbsp;"+content.Name+"</h4><h4 id='wait_Email'>Email:&nbsp"+
+								content.Email+"</h4><br/>"+"<input class='apply_apply' type='button' value='Agree' onclick='agree("+index+")'>"+
+								"<input class='caccel_apply' type='button' value='Disagree' onclick='disagree("+index+")'></div>");
+							document.cookie="applyUser"+index+"="+content.Name;
+							document.cookie="applyEmail"+index+"="+content.Email;
+							apply_gb(index);
+						});
+						$.each(myConcern,function(index,content){
+							$("#no_myConcern").remove();
+							if(index==0){
+								$(".myConcern").append("<div id='myConcern_list0'><img id='myconcern_head' src='"+content.image+"'><h4 id='myconcern_name'>"+
+								content.Name+"</h4><h4 id='myconcern_Email'>"+content.Email+"</h4>"+
+								"<input class='myconcern_apply' type='button' value='取消关注' onclick='myConcernCancel("+index+")'>"+
+								"<br/><div class='chuandian'><h4>智能床垫</h4><input class='cd_shishi' type='button' value='查看实时' onclick='shishi("+"cd,"+index+")'>"+
+								"<input class='cd_lishi' type='button' value='查看历史' onclick='lishi("+"cd,"+index+")'></div>"+
+								"<br/><div class='zhentou'><h4>智能枕</h4><input class='zt_shishi' type='button' value='查看实时' onclick='shishi("+"cd,"+index+")'>"+
+								"<input class='zt_lishi' type='button' value='查看历史' onclick='lishi("+"zt,"+index+")'></div>"+
+								"<br/><div class='shouhuan'><h4 id='sh_sh0'>智能手环</h4><input class='sh_shishi' id='sh_shishi0' type='button' value='查看实时' onclick='shishi("+"sh"+index+")'>"+
+								"<input class='sh_lishi' id='sh_lishi0' type='button' value='查看历史' onclick='lishi("+"sh"+index+")'></div></div>");
+							}else{
+								$(".myConcern").append("<div id='myConcern_list'><img id='myconcern_head' src='"+content.image+"'><h4 id='myconcern_name'>"+
+								content.Name+"</h4><h4 id='myconcern_Email'>"+content.Email+"</h4>"+
+								"<input class='myconcern_apply' type='button' value='取消关注' onclick='myConcernCancel("+index+")'>"+
+								"<br/><div class='chuandian'><h4>智能床垫</h4><input class='cd_shishi' type='button' value='查看实时' onclick='shishi("+"cd,"+index+")'>"+
+								"<input class='cd_lishi' type='button' value='查看历史' onclick='lishi("+"cd,"+index+")'></div>"+
+								"<br/><div class='zhentou'><h4>智能枕</h4><input class='zt_shishi' type='button' value='查看实时' onclick='shishi("+"cd,"+index+")'>"+
+								"<input class='zt_lishi' type='button' value='查看历史' onclick='lishi("+"zt,"+index+")'></div>"+
+								"<br/><div class='shouhuan'><h4 id='sh_sh"+index+"'>智能手环</h4><input class='sh_shishi' id='sh_shishi"+index+"' type='button' value='查看实时' onclick='shishi("+"sh"+index+")'>"+
+								"<input class='sh_lishi' id='sh_lishi"+index+"' type='button' value='查看历史' onclick='lishi("+"sh"+index+")'></div></div>");
+							}
+							document.cookie="myconcernEmail"+index+"="+content.Email;
+							myConcern_gb(index);
+						});
+						concernMe_gb();
+						$.each(concernMe,function(index,content){
+							$("#no_concernMe").remove();
+							if(index==0){
+								$(".concernMe").append("<div id='concernMe_list0'><img id='concernMe_head0' src='"+content.image+"'><h4 id='concernMe_name'>"+
+								content.Name+"</h4><h4 id='concernMe_Email'>"+content.Email+"</h4>"+
+								"<input id='concernMe_apply' type='button' value='取消关注' onclick='concernMeConcel("+index+")'></div>");
+							}else{
+								$(".concernMe").append("<div id='concernMe_list'><img id='concernMe_head' src='"+content.image+"'><h4 id='concernMe_name'>"+
+								content.Name+"</h4><h4 id='concernMe_Email'>"+content.Email+"</h4>"+
+								"<input id='concernMe_apply' type='button' value='取消关注' onclick='concernMeConcel("+index+")'></div>");
+							}
+							document.cookie="concernMeEmail"+index+"="+content.Email;
+							refresh_gb(index);
+						});
+					},
+				error:function(){
+					alert("Unkonw Error.Please Try Again!");
+					}
+				});
+	});
+    </script>
+    <script type="text/javascript">
+    function cancel_apply(){
+    	$("#search_result").remove();
+    	search_gb();
+    }
+    function apply_apply(){
+    	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var myEmail = info.Email;
+		var firstName = info.firstName;
+		var middleName = info.middleName;
+		var lastName = info.lastName;
+		var otherEmails = document.cookie.match(new RegExp("(^| )applyPeopleEmail=([^;]*)(;|$)"));
+		var otherEmail = otherEmails[2];
+    	$.ajax({
+			type:"post",
+			url:"/SleepMonitor/concern/apply",
+			data:{
+				myEmail:myEmail,
+				otherEmail:otherEmail,
+				firstName:firstName,
+				middleName:middleName,
+				lastName:lastName
+			},
+			dataType:"json",
+			success:function(data){
+					if(data.Code==1013){
+						alert(data.Message);
+						javascript:location.reload();
+					}else{
+						alert(data.Message);
+					}
+				},
+			error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+		});
+    }
+    function agree(index){
+   		var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var myEmail = info.Email;
+		var firstName = info.firstName;
+		var middleName = info.middleName;
+		var lastName = info.lastName;
+    	var applyInfo1 = document.cookie.match(new RegExp("(^| )applyUser"+index+"=([^;]*)(;|$)"));
+    	var otherName = applyInfo1[2];
+    	var applyInfo2 = document.cookie.match(new RegExp("(^| )applyEmail"+index+"=([^;]*)(;|$)"));
+    	var otherEmail = applyInfo2[2];
+    	$.ajax({
+			type:"post",
+			url:"/SleepMonitor/concern/agree",
+			data:{
+				myEmail:myEmail,
+				otherEmail:otherEmail,
+				firstName:firstName,
+				middleName:middleName,
+				lastName:lastName,
+				otherName:otherName
+			},
+			dataType:"json",
+			success:function(data){
+					if(data.Code==1015){
+						alert(data.Message);
+						javascript:location.reload();
+					}else{
+						alert(data.Message);
+					}
+				},
+			error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+		});
+    }
+    function disagree(index){
+   		var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var myEmail = info.Email;
+    	var applyInfo2 = document.cookie.match(new RegExp("(^| )applyEmail"+index+"=([^;]*)(;|$)"));
+    	var otherEmail = applyInfo2[2];
+    	$.ajax({
+			type:"post",
+			url:"/SleepMonitor/concern/disagree",
+			data:{
+				myEmail:myEmail,
+				otherEmail:otherEmail
+			},
+			dataType:"json",
+			success:function(data){
+					if(data.Code==1015){
+						alert(data.Message);
+						javascript:location.reload();
+					}else{
+						alert(data.Message);
+					}
+				},
+			error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+		});
+    }
+    function myConcernCancel(index){
+    	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var myEmail = info.Email;
+    	var applyInfo2 = document.cookie.match(new RegExp("(^| )myconcernEmail"+index+"=([^;]*)(;|$)"));
+    	var otherEmail = applyInfo2[2];
+    	$.ajax({
+			type:"post",
+			url:"/SleepMonitor/concern/cancel",
+			data:{
+				myEmail:myEmail,
+				otherEmail:otherEmail,
+				flog:"true"
+			},
+			dataType:"json",
+			success:function(data){
+					if(data.Code==1017){
+						alert(data.Message);
+						javascript:location.reload();
+					}else{
+						alert(data.Message);
+					}
+				},
+			error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+		});
+    }
+    function concernMeConcel(index){
+    	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+		var info = JSON.parse(userInfo[2]);
+		var myEmail = info.Email;
+    	var applyInfo2 = document.cookie.match(new RegExp("(^| )concernMeEmail"+index+"=([^;]*)(;|$)"));
+    	var otherEmail = applyInfo2[2];
+    	$.ajax({
+			type:"post",
+			url:"/SleepMonitor/concern/cancel",
+			data:{
+				myEmail:myEmail,
+				otherEmail:otherEmail,
+				flog:"false"
+			},
+			dataType:"json",
+			success:function(data){
+					if(data.Code==1017){
+						alert(data.Message);
+						javascript:location.reload();
+					}else{
+						alert(data.Message);
+					}
+				},
+			error:function(){
+					alert("Unkonw Error.Please Try Again!");
+				}
+		});
+    }
+    </script>
+    <script type="text/javascript">
+    function search_gb(){
+    	var browser = checkbrowser();
+		if(!document.getElementById("search_result")){
+			if("IE"==browser){
+				document.getElementById("approval_box0").style.marginTop="0px";
+			}else if("Edge"==browser){
+				document.getElementById("approval_box0").style.marginTop="0px";
+			}else{
+				document.getElementById("approval_box0").style = "margin-top: 0px";
+			}
+		}else{
+		    if("Chrome"==browser){
+		    	document.getElementById("approval_box0").style = "margin-top: 100px";
+		    }else if("FF"==browser){
+		    	document.getElementById("approval_box0").style = "margin-top: 90px";
+		    }else if("IE"==browser){
+		    	document.getElementById("search_result").style.marginLeft="0px";
+		    	document.getElementById("approval_box0").style.marginTop="70px";
+		    }else if("Edge"==browser){
+				document.getElementById("approval_box0").style.marginTop="100px";
+			}else{
+		    	document.getElementById("approval_box0").style = "margin-top: 80px";
+		    }
+		}
+	};
+	function apply_gb(index){
+		if(!document.getElementById("wait_wait")){
+			document.getElementById("approval_box1").style = "margin-top: 0px;";
+		}else{
+			if(index==0){
+				document.getElementById("approval_box1").style = "margin-top: 35px;";
+			}else{
+				if(index<3)
+					var mt = 45+45*(index);
+				else if(index<6)
+					var mt = 45+50*(index);
+				else if(index<9)
+					var mt = 45+55*(index);
+				else if(index<12)
+					var mt = 45+60*(index);
+				else if(index<15)
+					var mt = 45+65*(index);
+				else if(index<18)
+					var mt = 45+70*(index);
+				document.getElementById("approval_box1").style = "margin-top: "+mt+"px;";
+			}
+		}
+	}
+	
+	function myConcern_gb(index){
+		var browser = checkbrowser();
+		if(document.getElementById("myconcern_head")){
+			if("IE"==browser){
+				document.getElementById("sh_sh"+index).style.marginLeft="-154px";
+				document.getElementById("sh_shishi"+index).style.marginLeft="-69px";
+			}else if("Edge"==browser){
+				if(index!=0){
+					if(document.getElementById("wait_wait")){
+						document.getElementById("myConcern_list0").style.paddingTop="50px";
+						document.getElementById("sh_sh"+index).style.marginLeft="-144px";
+					}else{
+						document.getElementById("sh_sh"+index).style.marginLeft="-144px";
+						document.getElementById("myConcern_list0").style.paddingTop="20px";
+					}
+				}else{
+					if(document.getElementById("wait_wait")){
+						document.getElementById("myConcern_list0").style.paddingTop="20px";
+						document.getElementById("sh_sh"+index).style.marginLeft="-144px";
+					}else{
+						document.getElementById("sh_sh"+index).style.marginLeft="-144px";
+						document.getElementById("myConcern_list0").style.paddingTop="20px";
+					}
+				}
+			}else if("FF"==browser){
+				if(index!=0){
+					document.getElementById("sh_sh"+index).style = "margin-left:-159px";
+					document.getElementById("sh_shishi"+index).style = "margin-left:-72px";
+					document.getElementById("myConcern_list").style = "margin-top: 65px;";
+				}else{
+					document.getElementById("sh_sh"+index).style = "margin-left:-159px";
+					document.getElementById("sh_shishi"+index).style = "margin-left:-72px";
+				}
+			}
+		}
+	}
+	function concernMe_gb(){
+		var browser = checkbrowser();
+		if(!document.getElementById("myconcern_head")){
+			document.getElementById("approval_box2").style = "margin-top: 0px;";
+		}else{
+			if("IE"==browser){
+				document.getElementById("myConcern_list0").style.paddingTop="20px";
+			}else{
+				document.getElementById("approval_box2").style = "margin-top: 0px;";
+			}
+		}
+	}
+	/* function concernMe_gb(index){
+		if(!document.getElementById("myconcern_head")){
+			document.getElementById("approval_box2").style = "margin-top: 0px;";
+		}else{
+			document.getElementById("approval_box2").style = "margin-top: -15px;";
+		}
+	} */
+	function refresh_gb(index){
+		var browser = checkbrowser();
+		if(!document.getElementById("concernMe_head0")){
+			document.getElementById("refresh").style = "padding-top: 30px";
+			document.getElementById("no_concernMe").style = "padding-top: 50px";
+		}else{
+			if("IE"==browser){
+				if(index==0){
+					document.getElementById("refresh").style.paddingTop="130px";
+				}else{
+					var pd = 130+index*70;
+					document.getElementById("refresh").style.paddingTop="'"+pd+"px'";
+				}
+			}else if("Chrome"==browser){
+				if(index==0){
+					document.getElementById("concernMe_head0").style = "margin-left: 10px;";
+				}else{
+					document.getElementById("concernMe_head").style = "margin-left: 10px;";
+				}
+			}else{
+				if(index==0){
+					document.getElementById("refresh").style = "padding-top: 130px";
+				}else{
+					var pd = 130+index*70;
+					document.getElementById("refresh").style = "padding-top: "+pd+"px";
+				}
+			}
+		}
+	}
+	/* function refresh_gb(){
+		if(!document.getElementById("concernMe_head")){
+			document.getElementById("refresh").style = "padding-top: 30px";
+			document.getElementById("no_concernMe").style = "padding-top: 50px";
+		}else{
+			document.getElementById("refresh").style = "padding-top: 30px";
+		}
+	} */
+	
+    </script>
+
+</head>
+<body>
+<div class="holder">
+	<div class="left_nav">
+		<div class="header_text">
+			<div class="header_text_right">
+				<span class="header_pic"><a href="modify.html" ><img src="Heads/head_test.jpg" id="head"></a></span>
+			</div>
+		</div>
+		<ul>
+			<a href="#"><li>退出登录</li></a>
+			<a href="concern.html"><li>亲请关注</li></a>
+			<a href="productupgrade.html"><li>增值服务</li></a>
+			<a href="" ><span title="Yet open, please wait patiently"><li>名医坐堂</li></span></a>
+		</ul>
+	</div>
+	<div class="right_show">
+		<h2>isleep</h2>
+		<span class="glyphicon glyphicon-home"></span>
+		<div class="show_detail">
+			<div class="show_detail_data">
+				<h3>亲请关注</h3>
+				<ul class="concern_list">
+					<li><span>关注申请</span>
+					<ul class="concern_item0">
+						<div class="left">
+							<li class="list"><a href="javascript:void(0);">TOM</a></li>
+						</div>
+					</ul>
+					</li>
+					<li><span>我的关注</span>
+						<ul class="concern_item1">
+							<div class="left">
+								<li class="list"><a href="javascript:void(0);">TOM</a></li>
+							</div>
+						</ul>
+					</li>
+					<li><span>关注我的</span>
+						<ul class="concern_item2">
+							<div class="left">
+								<li class="list"><a href="javascript:void(0);">TOM</a></li>
+							</div>
+						</ul>
+
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+
+<!--<div class="family_main">-->
+    <!--<div class="family_form">-->
+        <!--<h3>Family Concern</h3>-->
+            <!--<div class="apply_concern">-->
+                <!--<h4>Apply For Attention:</h4>-->
+                <!--<div>-->
+                	<!--<input type="email" class="apply_txt" id="apply_txt"/>-->
+                	<!--&lt;!&ndash; <input type="button" class="search_btn" id="search_btn" > &ndash;&gt;-->
+                	<!--<img src="/SleepMonitor/images/search.png" class="search_pic"/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!---->
+            <!--<div class="approval_box0" id="approval_box0">-->
+				<!--<h4 >待批准申请:</h4>-->
+				<!--<div id="no_info">No Apply!</div>-->
+				<!--<div class="wait_approval"></div>-->
+            <!--</div><br/>-->
+        <!---->
+        <!--<div class="approval_box1" id="approval_box1">-->
+        	<!--<h4 style="float: left;">我的关注:</h4><br/>-->
+        	<!--<div id="no_myConcern" >No Concern!</div>-->
+        	<!--<div class="myConcern"></div>-->
+		<!--</div><br/>-->
+
+	<!--<div class="approval_box2" id="approval_box2">-->
+		<!--<h4>关注我的:</h4>-->
+		<!--<div class="concernMe"></div>-->
+		<!--<div id="no_concernMe">No Concern!</div>-->
+		<!--<div  id="refresh">-->
+				<!--<button type="button" onclick="javascript:location.reload()" >Refresh</button>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+</body>
+
+
+
+
+</html>

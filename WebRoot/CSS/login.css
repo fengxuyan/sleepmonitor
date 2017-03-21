@@ -1,0 +1,89 @@
+/***
+Login page
+***/
+
+.login{
+		width:100%; 
+		height:100%; 
+		margin:0 auto; 
+		background-color:#364150 !important;
+		font-family:Arial;
+		padding:30px;
+	}
+
+.login .login_frame{ 
+		width:350px; 
+		height:190px; 
+		text-align:center;
+		margin:0 auto; 
+		background-color:#eceef1;
+		padding:30px;
+	}
+.login .login_frame .error{
+		width:290px; 
+		height:15px; 
+		margin-top: 0px;
+    	margin-right: auto;
+    	margin-bottom: 0px;
+    	margin-left: 30px;
+    	color:#ff0000;
+	}
+.login .login_frame	.login_title{
+		width:100px; 
+		height:20px; 
+		color:#4db3a5;
+		margin-top: -10px;
+    	margin-right: auto;
+    	margin-bottom: 13px;
+    	margin-left: auto;
+    	font-size: 1.8em;
+}
+
+.login .login_frame .forget{
+		float:right;
+		padding-top: 10px;
+    	padding-right: 0px;
+    	padding-bottom: 10px;
+    	padding-left: 10px;
+	}
+.login .login_frame .Email_input,
+.login .login_frame .pass_input{
+		width:330px;
+		padding:10px;
+		background-color:#dde3ec;
+		border:1px solid #dde3ec;
+	}
+.login .login_frame .ver_input{
+		padding:10;
+		background-color:#dde3ec;
+		border:1px solid #dde3ec;
+		}
+.login .login_frame .login_submit{
+		width:80px;
+		padding:10px;
+		background-color:#45b6af;
+		border-color:#45b6af;
+		border:0px;
+		margin-top:5px;
+		cursor:pointer;
+		}
+.login .form_register{ 
+		width:390px; 
+		height:30px; 
+		text-align:center; 
+		margin:0 auto; 
+		background-color:#6c7a8d;
+		padding-top: 10px;
+    	padding-right: 10px;
+    	padding-bottom: 10px;
+    	padding-left: 10px;
+	}
+.login .form_register .register_front{
+		width:290px; 
+		height:15px; 
+		margin:0 auto;
+    	padding-top: 10px;
+    	padding-right: 10px;
+    	padding-bottom: 10px;
+    	padding-left: 10px;
+	}

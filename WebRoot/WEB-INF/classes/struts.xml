@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+		<package name="data-package" extends="struts-default,json-default"/>
+	<!-- <package name="login" extends="struts-default,json-default" namespace="/login">
+		<action name="login_check" class="com.jn.action.AccessAction" method="loginVerifiCation">
+			<result name="success">/frame.jsp</result>
+			<result name="fail">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="register" class="com.jn.action.AccessAction" method="register">
+			<result name="success">/info.jsp</result>
+			<result name="input">/register.jsp</result>
+			<result name="fail">/register.jsp</result>
+		</action>
+		<action name="getPassword" class="com.jn.action.AccessAction" method="sendPassword">
+			<result name="success">/Forget.jsp</result>
+			<result name="input">/Forget.jsp</result>
+		</action>	
+	</package> -->
+	<!-- <package name="app_login" extends="struts-default,json-default" namespace="/app_login">
+        <action name="app_login" class="com.jn.action.APP_AccessAction"  method="login">
+            <result name="success" type="json"><param name="root">ret</param></result>
+            <result name="fail" type="json"><param name="root">ret</param></result> 
+        </action>    
+        <action name="app_register" class="com.jn.action.APP_AccessAction"  method="register">
+            <result name="success" type="json"><param name="root">ret</param></result>
+            <result name="fail" type="json"><param name="root">ret</param></result> 
+        </action>  
+  </package> -->
+</struts>
