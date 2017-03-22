@@ -419,24 +419,28 @@
 					<li><span>关注申请</span>
 					<ul class="concern_item0">
 						<div class="left">
-							<li class="list"><a href="javascript:void(0);">TOM</a></li>
+							<div class="panel_input concern_apply">
+								<input type="email" class="apply_txt" id="apply_txt"/>
+								 <input type="button" class="search_btn" id="search_btn" >
+								<img src="images/search.png" class="search_pic"/>
+						    </div>
 						</div>
 					</ul>
 					</li>
 					<li><span>我的关注</span>
 						<ul class="concern_item1">
-							<div class="left">
-								<li class="list"><a href="javascript:void(0);">TOM</a></li>
-							</div>
+							<div id="no_myConcern" >No Concern!</div>
+							<div class="myConcern"></div>
 						</ul>
 					</li>
 					<li><span>关注我的</span>
 						<ul class="concern_item2">
-							<div class="left">
-								<li class="list"><a href="javascript:void(0);">TOM</a></li>
+							<div class="concernMe"></div>
+							<div id="no_concernMe">No Concern!</div>
+							<div  id="refresh">
+							<button type="button" onclick="javascript:location.reload()" >Refresh</button>
 							</div>
 						</ul>
-
 					</li>
 
 				</ul>

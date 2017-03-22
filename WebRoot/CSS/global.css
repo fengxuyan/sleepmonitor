@@ -13,6 +13,7 @@ body{
 }
 h2{
     text-align: center;
+    font-weight: normal;
 }
 ul li{
     list-style: none;

@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Forget Password</title>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<link rel="stylesheet" type="text/css" href="css/layout.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#submit").click(function(){
@@ -31,16 +33,35 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/forget.css">
-<body class="forget_page">
-	<div class="getPassword">
-	<form >
-		<h2 class="title">Forget Password ?</h2>
-		<h5 class="notice">Enter your e-mail address to get your password.</h5>
-		<input type="text" placeholder="Email" name="Email" class="email" id="email" value="">
+<body>
+<div class="holder">
+	<div class="header">
+		<div class="header_scroll">
+			<h2>isleep</h2>
+		</div>
+		<div class="header_text">
+			<h2 class="title">Forget Password ?</h2>
+		</div>
+	</div>
+	<div>
+		<div class="foPwdTxt">
+		<h2 class="title Email">Enter your e-mail address to get your password.</h2>
+		</div>
+		<div class="foPwdTxt">
+			<h2 class="title Email">E-mail</h2>
+		</div>
+		<div class="panel_input">
+			<input type="text" placeholder="Email" name="Email" class="email" id="email" value="">
+		</div>
+		<div class="foot_btn fo">
 		<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" class="submit_back">
 		<input type="button" value="Submit" class="submit_submit" id="submit">
-	</form>
+		</div>
 	</div>
+</div>
 </body>
+
+
+
+
 </html>

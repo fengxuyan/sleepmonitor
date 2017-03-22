@@ -115,23 +115,38 @@
 
 .content_icon .content_icon_list>li:first-child a{
 
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/cd.png");
  }
 .content_icon .content_icon_list>li:nth-child(2) a{
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/zhen.png");
 }
 .content_icon .content_icon_list>li:nth-child(3) a{
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/shouhuan.png");
 }
 .content_icon .content_icon_list>li:nth-child(4) a{
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/guanzhu.png");
 }
 .content_icon .content_icon_list>li:nth-child(5) a{
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/zengzhi.png");
 }
 .content_icon .content_icon_list>li:last-child a{
-    background-image: url("../Heads/head_test.jpg");
+    background-image: url("../images/mingyi.png");
 }
+
+.content_icon .content_icon_list.zhineng>li:first-child a{
+
+    background-image: url("../images/real.png");
+}
+.content_icon .content_icon_list.zhineng>li:nth-child(2) a{
+    background-image: url("../images/healthy.png");
+}
+.content_icon .content_icon_list.zhineng>li:nth-child(3) a{
+    background-image: url("../images/addproduct.png");
+}
+.content_icon .content_icon_list.zhineng>li:nth-child(4) a{
+    background-image: url("../images/delete.png");
+}
+
 .content_icon .content_icon_list>li a span{
     font-weight: bold;
     width: 100%;
@@ -262,11 +277,11 @@
 }
 .show_detail{
     background: #fff;
-    width:660px;
-    margin-left:40px;
-    margin-right:40px;
-    height: 671px;
-    /*margin-top:60px;*/
+    width: 734px;
+    padding-left: 14px;
+    /* margin-right: 40px; */
+    height: 707px;
+    /* margin-top: 60px; */
 
 }
 .reg_container{
@@ -345,9 +360,12 @@ input::-webkit-input-placeholder{
 }
 .on{
     background:#8A847F;
+    background-image: url("../images/white.png");
+    background-repeat :  no-repeat;
+    background-position:right;
+
+
 }
-
-
 .left_nav .header_text{
     width:290px;
     border:0;
@@ -528,8 +546,10 @@ input::-webkit-input-placeholder{
     width:30%;
     float:left;
     vertical-align: middle;
-    border:2px solid yellow;
+    background: #F3F3F3;
     text-align: center;
+    height:50px;
+    line-height: 50px;
 }
 
 .concern_list li ul{
@@ -540,6 +560,28 @@ input::-webkit-input-placeholder{
 .concern_list span{
     font-weight: 600;
     font-size: 16px;
+}
+.foPwdTxt{
+    margin-top: 55px;
+
+}
+.Email{
+
+    text-align: left;
+    margin-left: 122px;
+    margin-bottom: 35px;
+}
+.fo input[value='Submit']{
+
+    margin-right: 100.406px;
+}
+.fo input[value='Back']{
+
+    margin-left: 100.406px;
+}
+.clickC{
+    background-image: url("../images/clickChange.png") !important;
+
 }
 
 

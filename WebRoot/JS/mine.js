@@ -17,11 +17,11 @@ $(function () {
     });
         $(".concern_list li").each(function(index,item){
             $(item).bind("click",function(){
-                $(".concern_item0").hide();
+                $(item).addClass("clickC");
+                $(item).siblings().removeClass("clickC");
+                //$(".concern_item0").hide();
             });
         });
-
-
 
 
 
