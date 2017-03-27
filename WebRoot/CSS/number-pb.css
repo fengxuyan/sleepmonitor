@@ -1,0 +1,49 @@
+.number-pb {
+  position: relative;
+  height: 3px;
+  background-color: #ddd;
+  margin: 40px 0;
+  /*display: inline-block;*/
+}
+.number-pb .number-pb-shown {
+  position: absolute;
+  background-color: #176785;
+  background-image: linear-gradient(to right, #2f3335, #909393);
+  top: -4px;
+  left: 2px;
+  height: 21px;
+  -moz-box-shadow: 0 0 3px 0 #499989;
+  -webkit-box-shadow: 0 0 3px 0 #499989;
+  box-shadow: 0 0 3px 0 #499989;
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+
+.number-pb .number-pb-num {
+  position: absolute;
+  background-color: #fff;
+  /* left: 4px; */
+  top: -23px;
+  padding: 16px 12px;
+  width: 54px;
+  background: url(../images/healthy_line1_sleep.png)!important;
+  /*background-size: 0px 3px;*/
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.number-pb-shown.dream {
+  background-image: linear-gradient(to right, #0e153a, #1d2b64, #f8cdda);
+  -moz-box-shadow:    0 0 3px 0 #f8cdda;
+  -webkit-box-shadow: 0 0 3px 0 #f8cdda;
+  box-shadow:         0 0 3px 0 #f8cdda;
+}
+
+.number-pb-shown.sun {
+  background-image: linear-gradient(to right, #0f1b58, #e0a681, #e5e9bf);
+  -moz-box-shadow:    0 0 3px 0 #e5e9bf;
+  -webkit-box-shadow: 0 0 3px 0 #e5e9bf;
+  box-shadow:         0 0 3px 0 #e5e9bf;
+}
+
