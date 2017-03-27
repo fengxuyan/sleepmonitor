@@ -12,7 +12,7 @@
     margin-top: 12px;
 }
 .login{
-    background: url("../Heads/head_test.jpg");
+    background: url("../Heads/header_woman.png");
     background-size: cover;
     position: relative;
 }
@@ -1377,6 +1377,8 @@ left: 80px;
 .item1_product_list ul{
 
     width:100%;
+    margin-top: -43px;
+    padding-bottom: 17px;
 
 }
 .item1_product_list ul li{
@@ -1402,6 +1404,12 @@ left: 80px;
     padding-left: 23px;
 }
 
+
+.concern_item1 .detail_pic .header_pic .itme1_arrow{
+
+
+}
+
  .concern_item1 .detail_pic .header_pic .name,.concern_item2 .detail_pic .header_pic .name{
      font-weight: bold;
      font-size: 16px;
@@ -1421,20 +1429,19 @@ left: 80px;
     display: inline-block;
     height:11px;
     width:23px;
-    background: url(../images/concern_item1_arrowdown.png) no-repeat;
+    background: url(../images/concern_item1_arrowup.png) no-repeat;
 }
-.concern_item2 .detail_pic .header_pic .itme1_arrow{
-
-    display: none;
-}
-
-.changestatus{
+.itme2_arrow{
     display: inline-block;
     height:11px;
     width:23px;
-    background: url(../images/concern_item1_arrowup.png) no-repeat;
+    background: url(../images/concern_item1_arrowdown.png) no-repeat;
 }
+.concern_item1{
+    margin-bottom: -45px;
 
+    /*margin-bottom: -45px;*/
+}
 .itme1_rabish{
     display: inline-block;
     height: 42px;
@@ -1444,7 +1451,9 @@ left: 80px;
     top: -50px;
     left: 480px;
 }
-
+.clickLi{
+    /*margin-bottom: -45px;*/
+}
 .number-pb-shown .icon_sleepright{
     display: inline-block;
     height: 52px;

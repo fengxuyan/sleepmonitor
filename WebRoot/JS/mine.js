@@ -39,23 +39,41 @@ $(function () {
                 //$(".concern_item0").hide();
             });
         });
-    $(".concern_item1 .detail_pic .header_pic i").each(function(index,item){
-        $(item).bind("click",function(){
-            $('.item1_product_list').toggle();
-            $(this).toggleClass('itme1_arrow');
-            $(this).toggleClass('changestatus');
-            //$('.concern_item1 .detail_pic .header_pic').toggleClass('itme1_arrow').toggleClass('changestatus');
+
+    //$(".concern_item1 .detail_pic .header_pic i").each(function(index,item){
+    //    $(item).bind("click",function(index,event){
+    //        //$('.item1_product_list').toggle();
+    //        //$(this).toggleClass('itme1_arrow');
+    //        //$(this).toggleClass('changestatus');
+    //
+    //        $(this).siblings().toggle('itme1_arrow');
+    //
+    //
+    //
+    //
+    //        //$('.concern_item1 .detail_pic .header_pic').toggleClass('itme1_arrow').toggleClass('changestatus');
+    //        //$(".concern_item0").hide();
+    //    });
+    //});
+$('.concern_item1  .clickLi ').siblings().hide();
+    $(".concern_item1  .clickLi").each(function(index,item){
+        $(item).bind("click",function(event){
+            $target=$(event.target);
+            //alert($target.index());
+            //alert($target.parent().index());
+            //$('.item1_product_list').toggle();
+            //alert($(item).text());
+            //alert($target.index());
+            $('i',this).toggleClass('itme1_arrow').toggleClass('itme2_arrow');
+            $(this).siblings().toggle('item1_product_list');
+            //$('.concern_item1 .detail_pic .header_pic').toggleClass('changestatus');
             //$(".concern_item0").hide();
         });
     });
+    //
+
     $('.concern2').hide();
-
     $('.concern1').hide();
-
-
-
-
-
     $(".search_list li").eq(0).addClass("clickC");
     //$('.report').show();
 
