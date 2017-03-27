@@ -2,8 +2,6 @@
  * Created by Yao on 2017/1/6.
  */
 $(function () {
-
-
     // siblings()用于初始化，在后续的点击事件中不应该使用siblings(),
     //$(".real ul li").eq(0).addClass("on").siblings().removeClass("on");
     var that=$(".left_nav ul li").eq(0)[0];
@@ -15,17 +13,485 @@ $(function () {
         $(this).addClass('on');
         that=this;
     });
+    $(".concern_list li").eq(0).addClass("clickC");
         $(".concern_list li").each(function(index,item){
             $(item).bind("click",function(){
                 $(item).addClass("clickC");
                 $(item).siblings().removeClass("clickC");
+                if(index==0){
+                    $('.concern0').show();
+                    $('.concern1').hide();
+                    $('.concern2').hide();
+                    //$('.oneDayLists').hide();
+                }
+                if(index==1){
+                    $('.concern1').show();
+                    $('.concern0').hide();
+                    $('.concern2').hide();
+                    //$('.oneDayLists').hide();
+                }
+                if(index==2){
+                    $('.concern2').show();
+                    $('.concern0').hide();
+                    $('.concern1').hide();
+                    //$('.daysLists').hide();
+                }
                 //$(".concern_item0").hide();
             });
         });
+    $(".concern_item1 .detail_pic .header_pic i").each(function(index,item){
+        $(item).bind("click",function(){
+            $('.item1_product_list').toggle();
+            $(this).toggleClass('itme1_arrow');
+            $(this).toggleClass('changestatus');
+            //$('.concern_item1 .detail_pic .header_pic').toggleClass('itme1_arrow').toggleClass('changestatus');
+            //$(".concern_item0").hide();
+        });
+    });
+    $('.concern2').hide();
+
+    $('.concern1').hide();
 
 
 
 
+
+    $(".search_list li").eq(0).addClass("clickC");
+    //$('.report').show();
+
+    $('.two').hide();
+    $('.one').show();
+    $("#onesearch").bind("click",function() {
+            $('.one').hide();
+            $('.report').show();
+        }
+    );
+    //$("#twosearch").click($('.report').show());
+    $(".search_list li").each(function(index,item){
+        $(item).bind("click",function(){
+            $(item).addClass("clickC");
+            $(item).siblings().removeClass("clickC");
+            if(index==0){
+                $('.one').show();
+                $('.two').hide();
+                $('.report').hide();
+                $('.reports').hide();
+                //$('.oneDayLists').hide();
+                $("#onesearch").bind("click",function() {
+                    $('.one').hide();
+                    $('.report').show();
+                    }
+                );
+            }
+            if(index==1){
+                $('.one').hide();
+                $('.two').show();
+                $('.report').hide();
+                $('.reports').hide();
+                $("#twosearch").bind("click",function() {
+                    $('.two').hide();
+                    $('.reports').show();
+                    $('.rep').css("height", "1800px");
+                    $(' .rep .right_show').css("background", "#fff");
+                    }
+                );
+                //$('.daysLists').hide();
+            }
+            //$(".concern_item0").hide();
+        });
+    });
+
+
+
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 80,
+        "marginTop": 17,
+        "autoMarginOffset": 20,
+        "dataProvider": [{
+            "date": "2012-03-01",
+            "price": 20
+        }, {
+            "date": "2012-03-02",
+            "price": 75
+        }, {
+            "date": "2012-03-03",
+            "price": 15
+        }, {
+            "date": "2012-03-04",
+            "price": 75
+        }, {
+            "date": "2012-03-05",
+            "price": 158
+        }, {
+            "date": "2012-03-06",
+            "price": 57
+        }, {
+            "date": "2012-03-07",
+            "price": 107
+        }, {
+            "date": "2012-03-08",
+            "price": 89
+        }, {
+            "date": "2012-03-09",
+            "price": 75
+        }, {
+            "date": "2012-03-10",
+            "price": 132
+        }, {
+            "date": "2012-03-11",
+            "price": 158
+        }, {
+            "date": "2012-03-12",
+            "price": 56
+        }, {
+            "date": "2012-03-13",
+            "price": 169
+        }, {
+            "date": "2012-03-14",
+            "price": 24
+        }, {
+            "date": "2012-03-15",
+            "price": 147
+        }],
+        "valueAxes": [{
+            "logarithmic": true,
+            "dashLength": 1,
+            "guides": [{
+                "dashLength": 6,
+                "inside": true,
+                "label": "average",
+                "lineAlpha": 1,
+                "value": 90.4
+            }],
+            "position": "left"
+        }],
+        "graphs": [{
+            "bullet": "round",
+            "id": "g1",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 7,
+            "lineThickness": 2,
+            "title": "Price",
+            "type": "smoothedLine",
+            "useLineColorForBulletBorder": true,
+            "valueField": "price"
+        }],
+        "chartScrollbar": {},
+        "chartCursor": {
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true,
+            "cursorAlpha": 0.05
+        },
+        "dataDateFormat": "YYYY-MM-DD",
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    chart.addListener("dataUpdated", zoomChart);
+    function zoomChart() {
+        chart.zoomToDates(new Date(2012, 2, 2), new Date(2012, 2, 10));
+    }
+
+    var chart1 = AmCharts.makeChart("chartdiv1", {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 80,
+        "marginTop": 17,
+        "autoMarginOffset": 20,
+        "dataProvider": [{
+            "date": "2012-03-01",
+            "price": 20
+        }, {
+            "date": "2012-03-02",
+            "price": 75
+        }, {
+            "date": "2012-03-03",
+            "price": 15
+        }, {
+            "date": "2012-03-04",
+            "price": 75
+        }, {
+            "date": "2012-03-05",
+            "price": 158
+        }, {
+            "date": "2012-03-06",
+            "price": 57
+        }, {
+            "date": "2012-03-07",
+            "price": 107
+        }, {
+            "date": "2012-03-08",
+            "price": 89
+        }, {
+            "date": "2012-03-09",
+            "price": 75
+        }, {
+            "date": "2012-03-10",
+            "price": 132
+        }, {
+            "date": "2012-03-11",
+            "price": 158
+        }, {
+            "date": "2012-03-12",
+            "price": 56
+        }, {
+            "date": "2012-03-13",
+            "price": 169
+        }, {
+            "date": "2012-03-14",
+            "price": 24
+        }, {
+            "date": "2012-03-15",
+            "price": 147
+        }],
+        "valueAxes": [{
+            "logarithmic": true,
+            "dashLength": 1,
+            "guides": [{
+                "dashLength": 6,
+                "inside": true,
+                "label": "average",
+                "lineAlpha": 1,
+                "value": 90.4
+            }],
+            "position": "left"
+        }],
+        "graphs": [{
+            "bullet": "round",
+            "id": "g1",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 7,
+            "lineThickness": 2,
+            "title": "Price",
+            "type": "smoothedLine",
+            "useLineColorForBulletBorder": true,
+            "valueField": "price"
+        }],
+        "chartScrollbar": {},
+        "chartCursor": {
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true,
+            "cursorAlpha": 0.05
+        },
+        "dataDateFormat": "YYYY-MM-DD",
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    chart1.addListener("dataUpdated", zoomChart1);
+    function zoomChart1() {
+        chart1.zoomToDates(new Date(2012, 2, 2), new Date(2012, 2, 10));
+    }
+    var chart2 = AmCharts.makeChart("chartdiv2", {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 80,
+        "marginTop": 17,
+        "autoMarginOffset": 20,
+        "dataProvider": [{
+            "date": "2012-03-01",
+            "price": 20
+        }, {
+            "date": "2012-03-02",
+            "price": 75
+        }, {
+            "date": "2012-03-03",
+            "price": 15
+        }, {
+            "date": "2012-03-04",
+            "price": 75
+        }, {
+            "date": "2012-03-05",
+            "price": 158
+        }, {
+            "date": "2012-03-06",
+            "price": 57
+        }, {
+            "date": "2012-03-07",
+            "price": 107
+        }, {
+            "date": "2012-03-08",
+            "price": 89
+        }, {
+            "date": "2012-03-09",
+            "price": 75
+        }, {
+            "date": "2012-03-10",
+            "price": 132
+        }, {
+            "date": "2012-03-11",
+            "price": 158
+        }, {
+            "date": "2012-03-12",
+            "price": 56
+        }, {
+            "date": "2012-03-13",
+            "price": 169
+        }, {
+            "date": "2012-03-14",
+            "price": 24
+        }, {
+            "date": "2012-03-15",
+            "price": 147
+        }],
+        "valueAxes": [{
+            "logarithmic": true,
+            "dashLength": 1,
+            "guides": [{
+                "dashLength": 6,
+                "inside": true,
+                "label": "average",
+                "lineAlpha": 1,
+                "value": 90.4
+            }],
+            "position": "left"
+        }],
+        "graphs": [{
+            "bullet": "round",
+            "id": "g1",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 7,
+            "lineThickness": 2,
+            "title": "Price",
+            "type": "smoothedLine",
+            "useLineColorForBulletBorder": true,
+            "valueField": "price"
+        }],
+        "chartScrollbar": {},
+        "chartCursor": {
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true,
+            "cursorAlpha": 0.05
+        },
+        "dataDateFormat": "YYYY-MM-DD",
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    chart2.addListener("dataUpdated", zoomChart2);
+    function zoomChart2() {
+        chart2.zoomToDates(new Date(2012, 2, 2), new Date(2012, 2, 10));
+    }
+    var chart3 = AmCharts.makeChart("chartdiv3", {
+        "type": "serial",
+        "theme": "light",
+        "marginRight": 80,
+        "marginTop": 17,
+        "autoMarginOffset": 20,
+        "dataProvider": [{
+            "date": "2012-03-01",
+            "price": 20
+        }, {
+            "date": "2012-03-02",
+            "price": 75
+        }, {
+            "date": "2012-03-03",
+            "price": 15
+        }, {
+            "date": "2012-03-04",
+            "price": 75
+        }, {
+            "date": "2012-03-05",
+            "price": 158
+        }, {
+            "date": "2012-03-06",
+            "price": 57
+        }, {
+            "date": "2012-03-07",
+            "price": 107
+        }, {
+            "date": "2012-03-08",
+            "price": 89
+        }, {
+            "date": "2012-03-09",
+            "price": 75
+        }, {
+            "date": "2012-03-10",
+            "price": 132
+        }, {
+            "date": "2012-03-11",
+            "price": 158
+        }, {
+            "date": "2012-03-12",
+            "price": 56
+        }, {
+            "date": "2012-03-13",
+            "price": 169
+        }, {
+            "date": "2012-03-14",
+            "price": 24
+        }, {
+            "date": "2012-03-15",
+            "price": 147
+        }],
+        "valueAxes": [{
+            "logarithmic": true,
+            "dashLength": 1,
+            "guides": [{
+                "dashLength": 6,
+                "inside": true,
+                "label": "average",
+                "lineAlpha": 1,
+                "value": 90.4
+            }],
+            "position": "left"
+        }],
+        "graphs": [{
+            "bullet": "round",
+            "id": "g1",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 7,
+            "lineThickness": 2,
+            "title": "Price",
+            "type": "smoothedLine",
+            "useLineColorForBulletBorder": true,
+            "valueField": "price"
+        }],
+        "chartScrollbar": {},
+        "chartCursor": {
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true,
+            "cursorAlpha": 0.05
+        },
+        "dataDateFormat": "YYYY-MM-DD",
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    chart3.addListener("dataUpdated", zoomChart3);
+    function zoomChart3() {
+        chart3.zoomToDates(new Date(2012, 2, 2), new Date(2012, 2, 10));
+    }
 
     $('.search_pic').click(
         function () {
@@ -64,14 +530,7 @@ $(function () {
         );}
         }
     );
-   
-    
-    
-    
-    	
- 
-    
-    
+
     $('.approval_agree').click(
         function () {
         var approval_box0_email=$(".approval_box0_email").html();

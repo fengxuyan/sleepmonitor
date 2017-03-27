@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Family Concern</title>
-    <!-- <script src="../js/jquery-1.11.2.min.js"></script> -->
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
-    <script src="JS/mine.js"></script>
+    <script src="JS/jquery-3.2.0.min.js"></script>
     <script src="/SleepMonitor/JS/checkbrowser.js"></script>
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
 	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
@@ -297,7 +298,6 @@
 			}
 		}
 	}
-	
 	function myConcern_gb(index){
 		var browser = checkbrowser();
 		if(document.getElementById("myconcern_head")){
@@ -390,9 +390,7 @@
 			document.getElementById("refresh").style = "padding-top: 30px";
 		}
 	} */
-	
     </script>
-
 </head>
 <body>
 <div class="holder">
@@ -404,7 +402,7 @@
 		</div>
 		<ul>
 			<a href="#"><li>退出登录</li></a>
-			<a href="concern.html"><li>亲请关注</li></a>
+			<a href="concern.html"><li class="on">亲请关注</li></a>
 			<a href="productupgrade.html"><li>增值服务</li></a>
 			<a href="" ><span title="Yet open, please wait patiently"><li>名医坐堂</li></span></a>
 		</ul>
@@ -412,81 +410,92 @@
 	<div class="right_show">
 		<h2>isleep</h2>
 		<span class="glyphicon glyphicon-home"></span>
-		<div class="show_detail">
+		<div class="show_detail guanzhu">
 			<div class="show_detail_data">
-				<h3>亲请关注</h3>
 				<ul class="concern_list">
-					<li><span>关注申请</span>
+					<li><span>关注申请</span></li>
+					<li><span>我的关注</span></li>
+					<li><span>关注我的</span></li>
+				</ul>
+				<div class="concern0">
 					<ul class="concern_item0">
 						<div class="left">
-							<div class="panel_input concern_apply">
-								<input type="email" class="apply_txt" id="apply_txt"/>
-								 <input type="button" class="search_btn" id="search_btn" >
-								<img src="images/search.png" class="search_pic"/>
-						    </div>
+							<div class="panel_input item0_input">
+								<input type="email" class="" id="apply_txt"/>
+								<input type="button" class="search_btn" id="search_btn" >
+								<!--<img src="images/search.png" class="search_pic"/>-->
+							</div>
+							<div class="concern_someone_detail">
+								<div class="detail_pic">
+											<span class="header_pic">
+												<a href="modify.html">
+													<img src="Heads/head_test.jpg" id="head">
+												</a>
+												<p>zhang san</p>
+												<p>360@qq.com</p>
+											</span>
+									<div class="detail_btn">
+										<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" class="submit_back">
+										<input type="button" value="Submit" id="submit_submit" class="submit_submit">
+
+									</div>
+								</div>
+							</div>
 						</div>
 					</ul>
-					</li>
-					<li><span>我的关注</span>
-						<ul class="concern_item1">
-							<div id="no_myConcern" >No Concern!</div>
-							<div class="myConcern"></div>
-						</ul>
-					</li>
-					<li><span>关注我的</span>
-						<ul class="concern_item2">
-							<div class="concernMe"></div>
-							<div id="no_concernMe">No Concern!</div>
-							<div  id="refresh">
-							<button type="button" onclick="javascript:location.reload()" >Refresh</button>
+				</div>
+				<div class="concern1">
+					<ul class="concern_item1">
+							<div class="detail_pic">
+							   <div class="header_pic">
+								   <i class="itme1_arrow"></i>
+							      <a href="modify.html">
+							         <img src="Heads/head_test.jpg" id="head">
+							      </a>
+								   <span class="name">zhang san</span>
+								   <span class="email">360@qq.com</span>
+								</div>
+								<i class="itme1_rabish"></i>
+								<div class="item1_product_list">
+									<ul>
+										<li><span>智能床垫</span>
+											<a href="real.html">查看实时数据</a>
+											<a href="healthy.html">查看健康档案</a>
+										</li>
+										<li><span>智能枕</span>
+											<a href="real.html?id=123">查看实时数据</a>
+											<a href="healthy.html">查看健康档案</a>
+										</li>
+										<li><span>智能手环</span>
+											<a href="real.html">查看实时数据</a>
+											<a href="healthy.html">查看健康档案</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</ul>
-					</li>
+					</div>
 
-				</ul>
 
+				<div class="concern2">
+					<ul class="concern_item2">
+						<div class="detail_pic">
+							<div class="header_pic">
+								<i class="itme1_arrow"></i>
+								<a href="modify.html">
+									<img src="Heads/head_test.jpg" id="head">
+								</a>
+								<span class="name">zhang san</span>
+								<span class="email">360@qq.com</span>
+							</div>
+							<i class="itme1_rabish"></i>
+						</div>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-<!--<div class="family_main">-->
-    <!--<div class="family_form">-->
-        <!--<h3>Family Concern</h3>-->
-            <!--<div class="apply_concern">-->
-                <!--<h4>Apply For Attention:</h4>-->
-                <!--<div>-->
-                	<!--<input type="email" class="apply_txt" id="apply_txt"/>-->
-                	<!--&lt;!&ndash; <input type="button" class="search_btn" id="search_btn" > &ndash;&gt;-->
-                	<!--<img src="/SleepMonitor/images/search.png" class="search_pic"/>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!---->
-            <!--<div class="approval_box0" id="approval_box0">-->
-				<!--<h4 >待批准申请:</h4>-->
-				<!--<div id="no_info">No Apply!</div>-->
-				<!--<div class="wait_approval"></div>-->
-            <!--</div><br/>-->
-        <!---->
-        <!--<div class="approval_box1" id="approval_box1">-->
-        	<!--<h4 style="float: left;">我的关注:</h4><br/>-->
-        	<!--<div id="no_myConcern" >No Concern!</div>-->
-        	<!--<div class="myConcern"></div>-->
-		<!--</div><br/>-->
-
-	<!--<div class="approval_box2" id="approval_box2">-->
-		<!--<h4>关注我的:</h4>-->
-		<!--<div class="concernMe"></div>-->
-		<!--<div id="no_concernMe">No Concern!</div>-->
-		<!--<div  id="refresh">-->
-				<!--<button type="button" onclick="javascript:location.reload()" >Refresh</button>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+	</div>
+<script src="JS/mine.js"></script>
 </body>
-
-
-
-
 </html>

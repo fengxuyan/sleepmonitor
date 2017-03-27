@@ -39,8 +39,6 @@ $(document).ready(function(){
 });
 </script>
 </head>
-
-
 <body>
 <div class="holder">
 	<div class="left_nav">
@@ -53,7 +51,7 @@ $(document).ready(function(){
 			<a href="#"><li>退出登录</li></a>
 			<a href="real.html"><li>实时数据</li></a>
 			<a href="healthy.html"><li>健康档案</li></a>
-			<a href="addProduct.html"><li>添加或更改设备</li></a>
+			<a href="addProduct.html"><li class="on">添加或更改设备</li></a>
 			<a href="deleteProduct.html"><li>删除设备</li></a>
 		</ul>
 	</div>
@@ -62,10 +60,21 @@ $(document).ready(function(){
 		<span class="glyphicon glyphicon-home"></span>
 		<div class="show_detail">
 			<div class="show_detail_data">
-				<h3>Add Product</h3>
-				<input type="text" id="SN" placeholder="SN">
-				<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" id="back">
-				<input type="button" value="Submit" id="add_product">
+				<div class="addpro">
+					<h4>添加或更改设备</h4>
+				</div>
+				<div class="foPwdTxt">
+				<div class="panel_input">
+					<input type="text" placeholder="手工输入SN" id="SN" value="" />
+				</div>
+				</div>
+				<div class="sao">
+					<a><img src="images/sao.png" /><span>扫一扫</span></a>
+				</div>
+				<div class="foot_btn fo fo1">
+					<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="Back" class="submit_back" id="back">
+					<input type="button" value="Submit" class="submit_submit" id="add_product">
+				</div>
 			</div>
 		</div>
 	</div>

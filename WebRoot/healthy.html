@@ -3,19 +3,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Healthy Consultation</title>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
-<script type="text/javascript">
-$(document).ready(function(){
+	<link rel="stylesheet" type="text/css" href="css/number-pb.css">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+	<!--<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>-->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		});
+	</script>
 
-});
-</script>
+	<script src="amcharts/amcharts.js"></script>
+	<script src="amcharts/serial.js"></script>
+	<!--<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>-->
+	<!--<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />-->
+	<script src="amcharts/themes/light.js"></script>
+	<style>
+		#chartdiv ,#chartdiv1,#chartdiv2,#chartdiv3{
+			width: 590px;
+			height	:300px;
+		}
+	</style>
+
 </head>
-
 <body>
-<div class="holder">
+<div class="holder rep ">
 	<div class="left_nav">
 		<div class="header_text">
 			<div class="header_text_right">
@@ -25,7 +38,7 @@ $(document).ready(function(){
 		<ul>
 			<a href="#"><li>退出登录</li></a>
 			<a href="real.html"><li>实时数据</li></a>
-			<a href="healthy.html"><li>健康档案</li></a>
+			<a href="healthy.html"><li class="on">健康档案</li></a>
 			<a href="addProduct.html"><li>添加或更改设备</li></a>
 			<a href="deleteProduct.html"><li>删除设备</li></a>
 		</ul>
@@ -35,19 +48,252 @@ $(document).ready(function(){
 		<span class="glyphicon glyphicon-home"></span>
 		<div class="show_detail">
 			<div class="show_detail_data">
-				<h3>健康档案</h3>
+				<div class="data_table search">
+					<ul class="search_list">
+						<li>查询单次睡眠</li>
+						<li>查询多次睡眠</li>
+					</ul>
+					<div class="one" >
+					<div class="reg_input reg_select1  search_time"  id="search_time">
+						<select name="year"></select>
+						<select name="month"></select>
+						<select name="day"></select>
+						<!--<input type="text" placeholder="Birthday *" id="yearOfBirth" value="01/01/1975" />-->
+					</div>
+						<input type="button" id='confirm' class=" time_confirm" value="确认">
 
+						<div>
+						<ul class="search_list1 table">
+							<li>测试日期</li>
+							<li>睡眠时长</li>
+							<li>睡眠评分</li>
+						</ul>
+					</div>
+					<div class="bottomLine"></div>
+					<div class="oneDayLists">
+						<ul>
+							<li> <span>2016/07/08</span><span>8 小时</span><span>85</span></li>
+							<li> <span>2016/07/08</span><span>8 小时</span><span>85</span></li>
+							<li> <span>2016/07/08</span><span>8 小时</span><span>85</span></li>
+							<li> <span>2016/07/08</span><span>8 小时</span><span>85</span></li>
+							<li> <span>2016/07/08</span><span>8 小时</span><span>85</span></li>
+						</ul>
+					 </div>
+						<input type="button" id='onesearch' class="submit_submit subSearch" value="单次查询">
+						</div>
+					<div class="two">
+						<div class="reg_input  reg_select1  ymd1"  id="search_times">
+							<select name="year"></select>
+							<select name="month"></select>
+							<select name="day"></select>
+							<!--<input type="text" placeholder="Birthday *" id="yearOfBirth" value="01/01/1975" />-->
+						</div>
+						<input type="button" id='confirms' class=" time_confirms" value="确认">
+						<i></i>
+						<div class="reg_input  reg_select1  ymd1 times2"  id="search_times2">
+							<select name="year"></select>
+							<select name="month"></select>
+							<select name="day"></select>
+							<!--<input type="text" placeholder="Birthday *" id="yearOfBirth" value="01/01/1975" />-->
+						</div>
+						<div>
+							<ul class="search_list1 table">
+								<li>测试日期</li>
+								<li>睡眠时长</li>
+								<li>睡眠评分</li>
+							</ul>
+						</div>
+						<div class="bottomLine"></div>
+						<div class="daysLists">
+							<ul>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+								<li> <span>2016/07/09</span><span>9 小时</span><span>85</span></li>
+							</ul>
+						</div>
+						<input type="button" id='twosearch' class="submit_submit subSearch" value="多次查询">
+					</div>
+					<div class="report">
+					<div class="report_detail">
+						<h4 class="">监测报告</h4>
+						<h5>监测日期：<span>7月14日</span></h5>
+						<div class="circle">
+							<ul>
+								<li><span>72</span><span>次/分</span><span>平均心率</span></li>
+								<li><span>12</span><span>次/分</span><span>平均呼吸率</span></li>
+								<li>
+									<div id="indicatorContainer4">
+									</div>
+									<span class="pf">睡眠评分</span>
+								</li>
+								<li><span>15</span><span>次/分</span><span>翻身次数</span></li>
+								<li><span>8</span><span>次/分</span><span>起夜次数</span></li>
+							</ul>
+						</div>
 
-
-
-
-
-
-			<!--起始时间:<input type="Date"> 结束时间: <input type="Date"> <input type="button" value="查询"> <input type="button" value="取消">-->
+						<div class="line">
+							<ul>
+								<li>
+									<i class="sc"><span>上床</span></i>
+										<section id="sample-pb">
+											<article>
+												<div class="number-pb">
+													<div class="number-pb-shown "><i class="icon_sleepright">入眠</i></div>
+													<!--<div class="number-pb-num">入眠</div>-->
+												</div>
+											</article>
+										</section>
+									<i><span>起床</span></i>
+								</li>
+								<li>
+									<section id="sample-pb1">
+									<article>
+										<div class="number-pb">
+											<div class="number-pb-shown"><i class="icon_sleepright">深睡</i></div>
+											<!--<div class="number-pb-num">深睡</div>-->
+										</div>
+									</article>
+								    </section>
+									<p>深度睡眠时长:5小时20分</p>
+								</li>
+								<li>
+									<section id="sample-pb2">
+										<article>
+											<div class="number-pb">
+												<div class="number-pb-shown"><i class="icon_sleepright">浅睡</i></div>
+												<!--<div class="number-pb-num">浅睡</div>-->
+											</div>
+										</article>
+									</section>
+									<p>浅度睡眠时长:3小时20分</p>
+								</li>
+								<li>
+									<section id="sample-pb3">
+										<article>
+											<div class="number-pb">
+												<div class="number-pb-shown"><i class="icon_sleepright">深睡</i></div>
+												<!--<div class="number-pb-num">总长</div>-->
+											</div>
+										</article>
+									</section>
+									<p>深度睡眠时长:5小时20分</p>
+								</li>
+							</ul>
+						</div>
+					</div>
 			</div>
-		</div>
+					<div class="reports">
+						<div class="reports_detail">
+							<h4 class="">分析统计</h4>
+							<p>监测日期：7月14日-8月31日</p>
+							<p>共计次数：8次<span><i>最高值</i><i>平均值</i><i>最低值</i></span></p>
+						</div>
+						<div class="statistics_table">
+							<p>心率</p>
+							<div class="statistics-table0">
+								<div id="chartdiv"></div>
+							</div>
+							<p>呼吸率</p>
+							<div class="statistics-table1">
+								<div id="chartdiv1"></div>
+							</div>
+							<p>深度睡眠时长</p>
+							<div class="statistics-table2">
+								<div id="chartdiv2"></div>
+							</div>
+							<p>睡眠质量曲线</p>
+							<div class="statistics-table3">
+								<div id="chartdiv3"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
 	</div>
-	<script src="js/mine.js"></script>
+</div>
+</div>
+</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!--<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
+<script src="JS/birthday.js"></script>
+<script src="JS/radialindicator.js"></script>
+<script src="JS/mine.js"></script>
+	<script>
+		$("#search_time").birthday();
+		$("#search_times").birthday();
+		$("#search_times2").birthday();
+	</script>
+
+<script src="JS/jquery.velocity.min.js"></script>
+<script src="JS/number-pb.js"></script>
+<script>
+	$(function() {
+		var num = 50;
+		var num1 = 60;
+		var num2 = 70;
+		var num3 = 80;
+		var controlBar = $('#sample-pb .number-pb').NumberProgressBar({
+			duration: 3000,
+			percentage: num
+		});
+
+		var controlBar1 = $('#sample-pb1 .number-pb').NumberProgressBar({
+			duration: 3000,
+			percentage: num1
+		});
+
+		var controlBar2 = $('#sample-pb2 .number-pb').NumberProgressBar({
+			duration: 3000,
+			percentage: num2
+		});
+
+		var controlBar3 = $('#sample-pb3 .number-pb').NumberProgressBar({
+			duration: 3000,
+			percentage: num3
+		});
+
+
+		function animate(val) {
+			if (val < 0) {
+				num = 0;
+			} else if (val > 100) {
+				num = 100;
+			} else {
+				num = val
+			}
+			controlBar.reach(num);
+			controlBar1.reach(num1);
+			controlBar2.reach(num2);
+			controlBar3.reach(num3);
+		}
+	});
+	var radialObj4 = $('#indicatorContainer4').radialIndicator({
+		barColor: {
+			0: '#FF0000',
+			33: '#FFFF00',
+			66: '#0066FF',
+			100: '#33CC33'
+		},
+		percentage: true
+	}).data('radialIndicator');
+	//Using Instance
+	radialObj4.animate(79);
+
+</script>
 
 </body>
 

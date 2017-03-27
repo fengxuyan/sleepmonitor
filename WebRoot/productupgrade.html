@@ -5,7 +5,11 @@
 <title>Product Upgrade</title>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <script src="/SleepMonitor/JS/DateFormat.js"></script>
-<script type="text/javascript">
+	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+
+	<script type="text/javascript">
 $(document).ready(function(){
 	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
 	var info = JSON.parse(userInfo[2]);
@@ -48,64 +52,81 @@ $(document).ready(function(){
 	}
 });
 </script>
-<style type="text/css">
-#image{
-	width:70px;
-	height:70px;
-	border-radius: 50%;
-    overflow: hidden;
-    margin: 0px auto;
-    float: left;
-}
-#mesg{
-	float: left;
-    margin-left: 40px;
-}
-#info_info{
-	width:300px;
-	height:70px;
-}
-#cd_1{
-	float: left;
-    margin-left: 20px;
-}
-#upgrade_select{
-	display:inline;
-	padding:3px;
-	margin-left: 40px;
-	text-decoration: none
-}
-</style>
-<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/upgrade.css">
 </head>
-<body id="upgrade">
-	<div id="info">
-	<div id="news">
-		<h3>News:</h3>
-		<div style="width:300px;height:70px;"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg">news news news!</h4></div>
-		<div id="info_info"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg">news news news!</h4></div>
-	</div>
-	<div id="New_Product">
-		<h3>Product:</h3>
-		<div id="" style="width:300px;height:70px;"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg" style="margin-left: 20px;">Product Product Product!</h4></div>
-		<div id="info_info"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg" style="margin-left: 20px;">Product Product Product!</h4></div>
-	</div>
-	<div id="Product_Upgrade">
-	<h3>Owned Product:</h3>
-		<div id="cd">
-			<div id="cd_1"><h3 style="display:inline">智能床垫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select" style=""></a></div>
-			<h3 id="cd_2">智能床垫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级版</h3>
+<body >
+<div class="holder proupdate" >
+	<div class="left_nav">
+		<div class="header_text">
+			<div class="header_text_right">
+				<span class="header_pic"><a href="modify.html" ><img src="Heads/head_test.jpg" id="head"></a></span>
+			</div>
 		</div>
-		<div id="zt">
-			<div id="zt_1"><h3>智能枕     普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select"></a></div>
-			<h3 id="zt_2">智能枕     高级版</h3>
-		</div>
-		<div id="sh">
-			<div id="sh_1"><h3>智能手环    普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select"></a></div>
-			<h3 id="sh_2">智能手环     高级版</h3>
-		</div>
-		<div id="no_info"><h3 style="text-align: center;">No Product!</h3></div>
+		<ul>
+			<a href="#"><li>退出登录</li></a>
+			<a href="concern.html"><li>亲请关注</li></a>
+			<a href="productupgrade.html"><li class="on">增值服务</li></a>
+			<a href="" ><span title="Yet open, please wait patiently"><li>名医坐堂</li></span></a>
+		</ul>
 	</div>
+	<div class="right_show ">
+		<h2>isleep</h2>
+		<span class="glyphicon glyphicon-home"></span>
+		<div class="show_detail">
+			<div class="show_detail_data proupdate">
+				<h3 >公司新闻</h3>
+				<div class="data_table ">
+					<div class="mesg">
+						<h4>news news news!</h4>
+					</div>
+				</div>
+			</div>
+			<div class="show_detail_data proupdate">
+				<div class="data_table">
+					<h3>新品发布</h3>
+					<div>
+						<img id="image" alt="" src="/SleepMonitor/images/head_test.jpg">
+						<h4 >Product Product Product!</h4>
+					</div>
+					<div>
+						<img id="image" alt="" src="/SleepMonitor/images/head_test.jpg">
+						<h4 >Product Product Product!</h4>
+					</div>
+				</div>
+			</div>
+			<div class="show_detail_data proupdate detail_update">
+				<div class="data_table">
+					<div id="cd">
+						<h3>增值服务</h3>
+						<h4 class="firsth4">您当前拥有的产品：</h4>
+						<div id="cd_1">
+							<h4>智能床垫 <span>普通版</span></h4>
+							<a href="/SleepMonitor/pay.html">
+								<input type="button" value="Upgrade" id="upgrade_select" style=""></a>
+						</div>
+						<h4 id="cd_2">智能床垫<span>高级版</span></h4>
+					</div>
+					<div id="zt">
+						<div id="zt_1">
+							<h4>智能枕<span>普通版</span></h4>
+							<a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select"></a>
+						</div>
+						<h4 id="zt_2">智能枕<span>高级版</span></h4>
+					</div>
+					<div id="sh">
+						<div id="sh_1">
+							<h4>智能手环<span>普通版</span></h4>
+							<a href="/SleepMonitor/pay.html">
+								<input type="button" value="Upgrade" id="upgrade_select"></a>
+						</div>
+						<h4 id="sh_2">智能手环<span>高级版</span></h4>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
 	</div>
+	<script src="js/mine.js"></script>
+</div>
 </body>
 </html>

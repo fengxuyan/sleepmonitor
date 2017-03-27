@@ -9,7 +9,9 @@
 <script src="/SleepMonitor/JS/rerequest.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#add").click(function(){
+	<%--$("#add").click(function(){--%>
+
+	$("#add_product").click(function(){
 		$.ajax({
 		type:"post",
 		url:"http://localhost:8080/SleepMonitor/product/add",

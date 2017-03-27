@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Product Upgrade</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script src="/SleepMonitor/JS/DateFormat.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var userInfo = document.cookie.match(new RegExp("(^| )userData=([^;]*)(;|$)"));
+	var info = JSON.parse(userInfo[2]);
+	var type1 = info.type1sn;
+	var level1 = info.level1;
+	var type2 = info.type2sn;
+	var level2 = info.level2;
+	var type3 = info.type3sn;
+	var level3 = info.level3;
+	var deadline1 = info.deadline1;
+	var deadline2 = info.deadline2;
+	var deadline3 = info.deadline3;
+	var today = new Date().Format("MM/dd/yyyy");
+	if(type1==null||type1=="")
+		document.getElementById("cd").style="display:none";
+	else{
+		$("#no_info").remove();
+		if(level1=="1"&&(Date.parse(deadline1)>=Date.parse(today)))
+			document.getElementById("cd_1").style="display:none";
+		else
+			document.getElementById("cd_2").style="display:none";
+	}
+	if(type2==null||type2=="")
+		document.getElementById("zt").style="display:none";
+	else{
+		$("#no_info").remove();
+		if(level2=="1"&&(Date.parse(deadline2)>=Date.parse(today)))
+			document.getElementById("zt_1").style="display:none";
+		else
+			document.getElementById("zt_2").style="display:none";
+	}
+	if(type3==null||type3=="")
+		document.getElementById("sh").style="display:none";
+	else{
+		$("#no_info").remove();
+		if(level3=="1"&&(Date.parse(deadline3)>=Date.parse(today)))
+			document.getElementById("sh_1").style="display:none";
+		else
+			document.getElementById("sh_2").style="display:none";
+	}
+});
+</script>
+<style type="text/css">
+#image{
+	width:70px;
+	height:70px;
+	border-radius: 50%;
+    overflow: hidden;
+    margin: 0px auto;
+    float: left;
+}
+#mesg{
+	float: left;
+    margin-left: 40px;
+}
+#info_info{
+	width:300px;
+	height:70px;
+}
+#cd_1{
+	float: left;
+    margin-left: 20px;
+}
+#upgrade_select{
+	display:inline;
+	padding:3px;
+	margin-left: 40px;
+	text-decoration: none
+}
+</style>
+<link rel="stylesheet" type="text/css" href="/SleepMonitor/CSS/upgrade.css">
+</head>
+<body id="upgrade">
+	<div id="info">
+	<div id="news">
+		<h3>News:</h3>
+		<div style="width:300px;height:70px;"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg">news news news!</h4></div>
+		<div id="info_info"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg">news news news!</h4></div>
+	</div>
+	<div id="New_Product">
+		<h3>Product:</h3>
+		<div id="" style="width:300px;height:70px;"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg" style="margin-left: 20px;">Product Product Product!</h4></div>
+		<div id="info_info"><img id="image" alt="" src="/SleepMonitor/images/head_test.jpg"><h4 id="mesg" style="margin-left: 20px;">Product Product Product!</h4></div>
+	</div>
+	<div id="Product_Upgrade">
+	<h3>Owned Product:</h3>
+		<div id="cd">
+			<div id="cd_1"><h3 style="display:inline">智能床垫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select" style=""></a></div>
+			<h3 id="cd_2">智能床垫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级版</h3>
+		</div>
+		<div id="zt">
+			<div id="zt_1"><h3>智能枕     普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select"></a></div>
+			<h3 id="zt_2">智能枕     高级版</h3>
+		</div>
+		<div id="sh">
+			<div id="sh_1"><h3>智能手环    普通版</h3><a href="/SleepMonitor/pay.html"><input type="button" value="Upgrade" id="upgrade_select"></a></div>
+			<h3 id="sh_2">智能手环     高级版</h3>
+		</div>
+		<div id="no_info"><h3 style="text-align: center;">No Product!</h3></div>
+	</div>
+	</div>
+</body>
+</html>

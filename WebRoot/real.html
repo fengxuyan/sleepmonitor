@@ -26,7 +26,7 @@ $(document).ready(function(){
 			</div>
 			<ul>
 				<a href="#"><li>退出登录</li></a>
-				<a ><li>实时数据</li></a>
+				<a ><li class="on">实时数据</li></a>
 				<a href="healthy.html"><li>健康档案</li></a>
 				<a href="addProduct.html"><li>添加或更改设备</li></a>
 				<a href="deleteProduct.html"><li>删除设备</li></a>
@@ -37,30 +37,59 @@ $(document).ready(function(){
 	        <span class="glyphicon glyphicon-home"></span>
 			<div class="show_detail">
 				<div class="show_detail_data">
-					<h3>实时数据</h3>
 					<div class="data_table">
 						<div id="xl" class="left_heart_rate">
-							<span>心率</span>
+							<div class="xl_pic">
+							<h4>心率</h4>
+							</div>
+							<div class="xl_line">
+								<h2>72</h2><h4>次/分</h4>
+							</div>
 						</div>
-
 						<div class="centerdiv"></div>
-
 						<div id="hxl" class="right_breath_rate">
-							<span>呼吸率</span>
+							<div class="hxl_pic">
+								<h4>呼吸率</h4>
+							</div>
+							<div class="hxl_line">
+								<h2>72</h2><h4>次/分</h4>
+							</div>
 						</div>
-
 					</div>
-
 				</div>
-
+				<div class="clear"></div>
 				<div id="zt" class="show_detail_status">
-					<span>状态</span><span>在床</span><span>体动</span><span>无人</span>
+					<ul class="status">
+					    <li class="itmes"><span>状态</span></li>
+						<li>
+							<label for="ztai" id="noperson1">
+								<input type="checkbox" name="ztai" value="ztai" /><span>无人</span>
+							</label>
+						</li>
+						<li>
+							<label for="ztai" id="nomove">
+								<input type="checkbox" name="ztai" value="ztai" /><span>体动</span>
+							</label>
+						</li>
+
+						<li>
+							<label for="ztai" id="onbed">
+							<input type="checkbox" name="ztai" value="ztai" />
+							</label><span>在床</span>
+						</li>
+
+					</ul>
+					<div class="block_pic"></div>
+					<div id="sj">
+					</div>
+					<div class="time">
+						<span>21:00</span>
+						<span>22:00</span>
+					</div>
 				</div>
-				<div id="sj"><h4>时间:</h4></div>
 			</div>
 		</div>
 		<script src="js/mine.js"></script>
-
 </body>
 
 
